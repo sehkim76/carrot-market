@@ -10,7 +10,7 @@ export async function middleware(req: NextRequest) {
     const session = await getToken({req, secret: 'secret'});
     const pathname = req.nextUrl.pathname;
 
-    console.log('session', session);
+    console.log('[middleware] session', session);
 
     if ( req.nextUrl.pathname.startsWith("/user") && !session ) 
     {

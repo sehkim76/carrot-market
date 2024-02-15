@@ -28,7 +28,7 @@ const LoginPage = () => {
         try {
         const data = await signIn("credentials", body);
         } catch ( error ) {
-            console.log('Login Error', error);
+            console.log('[LoginPage] Login Error', error);
         } finally {
             setIsLoading(false);
         }

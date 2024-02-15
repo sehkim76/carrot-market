@@ -32,7 +32,7 @@ const RegisterPage = () => {
       const data = await axios.post("/api/register", body);
       router.push('/auth/login');
     } catch ( error ) {
-        console.log('Login Error', error);
+        console.log('[LoginPage] Login Error', error);
     } finally {
         setIsLoading(false);
     }

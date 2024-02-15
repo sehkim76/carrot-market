@@ -1,10 +1,12 @@
-import { signIn, signOut, useSession } from 'next-auth/react'
+import getCurrentUser from '@/app/actions/getCurrentUser'
+import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 
-const NavItem = ({mobile} : {mobile?: boolean}) => {
-  const { data: session, status } = useSession();
-  console.log('session', session);
+const NavItem = async ({mobile} : {mobile?: boolean}) => {
+  
+  const currentUser = await getCurrentUser();
+  console.log('[NavItem] currentUser', currentUser);
   return (
     <ul className={`text-md justify-center flex w-full items-center gap-4 
               ${mobile && "flex-col bg-orange-500 h-full"}`}>
@@ -15,7 +17,7 @@ const NavItem = ({mobile} : {mobile?: boolean}) => {
         <Link href={"/user"}>User</Link>
       </li>
  
-      { session?.user ? 
+      { currentUser ? 
       <li className='py-2 text-center border-b-4 cursor-pointer'>
         <button onClick={() => signOut()}>SignOut</button>
       </li>      :
