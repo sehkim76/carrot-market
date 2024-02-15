@@ -2,13 +2,31 @@
 import React from 'react'
 import { Map, MapMarker } from 'react-kakao-maps-sdk'
 
-const KakaoMap = () => {
+interface KakaoMapProps {
+  latitude: number,
+  longitude: number,
+  setCustomValue? : (id: string, value: number)=>void,  
+}
+
+const KakaoMap : React.FC<KakaoMapProps> = 
+({
+  latitude, 
+  longitude, 
+  setCustomValue,
+}) => {
+  const handleClick = (mouseEvent: kakao.maps.event.MouseEvent) => {
+    console.log('[KakaoMap] mouseEvent', mouseEvent);
+
+    setCustomValue!('latitude', mouseEvent.latLng.getLat());
+    setCustomValue!('longitude', mouseEvent.latLng.getLng());
+  }
   return (
     <Map
-      center={{ lat: 33.5563, lng: 126.79581 }}
+      onClick={(_t, mouseEvent)=>handleClick(mouseEvent)}
+      center={{ lat: latitude, lng: longitude }}
       style={{ width: "100%", height: "360px" }}
     >
-      <MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
+      <MapMarker position={{ lat: latitude, lng: longitude }}>
         
       </MapMarker>
     </Map>

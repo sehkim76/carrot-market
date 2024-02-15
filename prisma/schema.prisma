@@ -50,6 +50,8 @@ model User {
   hashedPassword  String?
   accounts      Account[]
   sessions      Session[]
+  favoriteIds   String[]
+  products      Product[]
   userType      UserType @default(User)
 }
 
@@ -59,4 +61,20 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Product {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  imageSrc    String
+  category    String
+  userId      String
+  price       Int
+  latitude    Float
+  longitude   Float
+  createAt    DateTime  @default(now())
+  updateAt    DateTime  @updatedAt
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
