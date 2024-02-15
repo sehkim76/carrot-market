@@ -1,5 +1,6 @@
 'use client';
 import { CldUploadWidget } from 'next-cloudinary';
+import Image from 'next/image';
 import { TbPhotoPlus } from 'react-icons/tb';
 
 declare global {
@@ -41,7 +42,18 @@ const ImageUpload : React.FC<ImageUploadProps> =
                                 border-neutral-300 text-neutral-600'
                             >
                                 <TbPhotoPlus size={50} />
+                                {value && (
+                                <div>
+                                <Image
+                                    fill
+                                    style={{ objectFit: 'cover'}}
+                                    src={value}     
+                                    alt=""                               
+                                />
+                                </div>
+                            )}
                             </div>
+
                         )
                     }
                 }

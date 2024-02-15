@@ -9,6 +9,8 @@ import Input from '@/components/Input';
 import { FieldValues, useForm } from 'react-hook-form';
 import Button from '@/components/Button';
 import dynamic from 'next/dynamic';
+import { categories } from '@/components/categories/Categories';
+import CategoryInput from '@/components/categories/CategoryInput';
 
 const ProductUploadPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -38,6 +40,7 @@ const ProductUploadPage = () => {
     }
 
     const imageSrc = watch('imageSrc');
+    const category = watch('category');
     
     const KakaoMap = dynamic(() => import('../../../components/KakaoMap'),{
         ssr: false,
@@ -75,6 +78,22 @@ const ProductUploadPage = () => {
                             register={register}
                             errors={errors}
                             required/>   
+                    <div>
+                        {
+                            categories.map((item)=>(
+                                <div key={item.label}>
+                                <CategoryInput
+                                    onClick={(category) =>
+                                        setCustomValue('category', category)}
+                                    selected={category === item.path}
+                                    label={item.label}
+                                    icon={item.icon}
+                                    path={item.path}
+                                />
+                                </div>
+                            ))
+                        }
+                    </div>                            
                     <KakaoMap />
                     <Button label="상품 생성하기" isLoading={false}/>                        
                 </form>
