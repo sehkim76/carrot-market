@@ -1,5 +1,6 @@
 // http://localhost:3000/auth/login
 'use client'
+import Button from '@/components/Button';
 import Input from '@/components/Input';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
@@ -53,12 +54,16 @@ const LoginPage = () => {
                 errors={errors}
                 required
             />
-            <button>Login</button>
+            <Button
+                label="로그인"
+                isLoading={isLoading}
+                />
+
             <div className='text-center'>
                 <p className='text-gray-400'>
-                    Not a member? { " " }
+                    회원이 아니시면 ? { " " }
                     <Link href='/auth/register' className='text-black hover:underline'>
-                        Register
+                        가입
                     </Link>
                 </p>
             </div>
