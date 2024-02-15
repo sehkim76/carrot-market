@@ -1,16 +1,14 @@
 // http://localhost:3000/products/upload
 'use client'
 
-import dynamic from 'next/dynamic'
 import Container from '@/components/Container';
 import React, { useState } from 'react'
 import Heading from '@/components/Heading';
 import ImageUpload from '@/components/ImageUpload';
 import Input from '@/components/Input';
-import { register } from 'module';
 import { FieldValues, useForm } from 'react-hook-form';
 import Button from '@/components/Button';
-import KakaoMap from '@/components/KakaoMap';
+import dynamic from 'next/dynamic';
 
 const ProductUploadPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -34,11 +32,17 @@ const ProductUploadPage = () => {
             price: 1
         }
     })
-    /*
+
+    const setCustomValue = (id: string, value: any) => {
+        setValue(id, value);
+    }
+
+    const imageSrc = watch('imageSrc');
+    
     const KakaoMap = dynamic(() => import('../../../components/KakaoMap'),{
         ssr: false,
     });
-    */
+    
     return (
         <Container>
             <div>
@@ -46,7 +50,11 @@ const ProductUploadPage = () => {
                     <Heading title='상품 올리기' 
                                 subtitle='상품을 올리세요'
                     />
-                    <ImageUpload />
+
+                    <ImageUpload onChange={(value)=>
+                        setCustomValue('imageSrc', value)}
+                                    value={imageSrc}
+                    />
                     <Input id='title'
                             label='제품명'
                             disabled={isLoading}
@@ -67,7 +75,7 @@ const ProductUploadPage = () => {
                             register={register}
                             errors={errors}
                             required/>   
-                    <KakaoMap/>
+                    <KakaoMap />
                     <Button label="상품 생성하기" isLoading={false}/>                        
                 </form>
             </div>
