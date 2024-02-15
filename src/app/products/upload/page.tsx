@@ -1,15 +1,15 @@
 // http://localhost:3000/products/upload
-'use client'
-
+"use client";
+import { categories } from "@/components/categories/Categories";
 import Container from '@/components/Container';
 import React, { useState } from 'react'
 import Heading from '@/components/Heading';
 import ImageUpload from '@/components/ImageUpload';
 import Input from '@/components/Input';
-import { FieldValues, useForm, SubmitHandler } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Button from '@/components/Button';
 import dynamic from 'next/dynamic';
-import { categories } from '@/components/categories/Categories';
+
 import CategoryInput from '@/components/categories/CategoryInput';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
