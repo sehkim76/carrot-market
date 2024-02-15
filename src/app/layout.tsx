@@ -20,6 +20,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <NavBar />
         {children}
+        <script
+          type="text/javascript"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f623f95c5a69cb5e1e8af7492693ed80&libraries=services,clusterer&autoload=false"
+        ></script>
       </body>
     </html>
   );
