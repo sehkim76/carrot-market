@@ -1,17 +1,21 @@
 // 여기에서 DB에 제품 레코드를 추가
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import prisma from "@/app/helpers/prismadb"
 import { NextResponse } from "next/server";
+import prisma from "@/helpers/prismadb";
+import getCurrentUser from "@/app/actions/getCurrentUser";
+
+
 
 export async function POST(
-    request: Request 
+    request: Request,
 ) {
+    console.log("[product register] entry")
     const currentUser = await getCurrentUser();
     if ( !currentUser ) {
         return NextResponse.error();
     }
 
     const body = await request.json();
+
 
     const { 
         title,
@@ -23,14 +27,14 @@ export async function POST(
         price
      } = body;
 
+     console.log("[product register] body", body)
      Object.keys(body).forEach((value: any) => {
         if ( !body[value] ) {
-            NextResponse.error();
+            return NextResponse.error();
         }
      });    
-
-    const product = await prisma.product.create(
-        {
+     console.log("[product register] pushing db")
+    const product = await prisma.product.create({
             data: {
                 title,
                 description,
@@ -42,5 +46,6 @@ export async function POST(
                 userId: currentUser.id      
             }
         });
+    console.log("[product register] pushed db")
     return NextResponse.json(product);
 }

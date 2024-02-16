@@ -1,5 +1,5 @@
 'use client';
-import { fromNow } from '@/app/helpers/dayjs';
+import { fromNow } from '@/helpers/dayjs';
 import { Product, User } from '@prisma/client';
 import Image from 'next/image';
 import React from 'react'

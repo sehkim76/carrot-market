@@ -1,4 +1,4 @@
-import prisma from "@/app/helpers/prismadb"
+import prisma from "@/helpers/prismadb"
 
 export interface ProductParams {
     category?: string;
@@ -18,7 +18,7 @@ export default async function getProducts(
         query.category = category;
     }
 
-    const totalItems = await prisma.product.count({where : query});
+    const totalItems = await prisma.product.count({where : query})
 
     const products = await prisma.product.findMany({
         where: query,
@@ -28,7 +28,7 @@ export default async function getProducts(
     })
 
     return {
-        products,
+        data: products,
         totalItems
     }
 }

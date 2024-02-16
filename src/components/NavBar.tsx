@@ -40,4 +40,3 @@ const NavBar = ({currentUser} : NavBarProps) => {
   )
 }
 
-export default NavBar

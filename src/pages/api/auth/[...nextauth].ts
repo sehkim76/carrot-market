@@ -3,8 +3,7 @@ import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
 import CredentialsProvider from "next-auth/providers/credentials";
-import KakaoProvider from "next-auth/providers/kakao";
-import prisma from "@/app/helpers/prismadb"
+import prisma from "@/helpers/prismadb";
 import bcrypt from 'bcryptjs';
 
 //const prisma = new PrismaClient()
@@ -72,6 +71,9 @@ export const authOptions : NextAuthOptions = {
     secret: 'secret',
     maxAge: 30 * 24 * 60 * 60
   },
+  pages: {
+    signIn: '/auth/login'
+  },
   callbacks: {
     async jwt({token, user})
     {
@@ -84,9 +86,7 @@ export const authOptions : NextAuthOptions = {
         return session;
     }
   },
-  pages: {
-    signIn: '/auth/login'
-  },
+
 }
 
 export default NextAuth(authOptions);
