@@ -1,11 +1,17 @@
 import getCurrentUser from '@/app/actions/getCurrentUser'
+import { User } from '@prisma/client';
 import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 
-const NavItem = async ({mobile} : {mobile?: boolean}) => {
+interface NavItemProps {
+  mobile?: boolean;
+  currentUser?: User | null;
+}
+
+const NavItem = async ({mobile, currentUser} : NavItemProps ) => {
   
-  const currentUser = await getCurrentUser();
+
   console.log('[NavItem] currentUser', currentUser);
   return (
     <ul className={`text-md justify-center flex w-full items-center gap-4 

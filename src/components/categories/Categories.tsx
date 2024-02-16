@@ -1,8 +1,11 @@
+'use client';
 import React from 'react'
 import { TbBeach, TbMountain, TbPool } from 'react-icons/tb'
 import { FaSkiing} from 'react-icons/fa'
 import { GiBoatFishing, GiIsland, GiWindmill} from 'react-icons/gi'
 import { MdOutlineVilla } from 'react-icons/md'
+import { useParams, useSearchParams } from 'next/navigation'
+import CategoryBox from './CategoryBox'
 export const categories = [
     {
         label: '디지털기기',
@@ -54,9 +57,21 @@ export const categories = [
     },
 ]
 
+
 const Categories = () => {
+    const params = useSearchParams();
+    const category = params?.get('category');
   return (
-    <div>Categories</div>
+    <div>
+        {categories.map((item)=> (
+            <CategoryBox 
+                key={item.label}
+                label={item.label}
+                path={item.path}
+                icon={item.icon}
+                selected={category === item.label}/>
+        ))}
+    </div>
   )
 }
 
