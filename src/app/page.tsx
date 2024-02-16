@@ -14,7 +14,7 @@ interface HomeProps {
   searchParams: ProductParams
 }
 export default async function Home({searchParams}: HomeProps) {
-  const {products, totalItems} = await getProducts(searchParams);
+  const {data: products, totalItems} = await getProducts(searchParams);
   const currentUser = await getCurrentUser();
   console.log('[Home]', products, totalItems);
   return (

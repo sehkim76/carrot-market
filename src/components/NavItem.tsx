@@ -1,5 +1,3 @@
-import { User } from '.prisma/client'
-import getCurrentUser from '@/app/actions/getCurrentUser'
 import { User } from '@prisma/client';
 import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'

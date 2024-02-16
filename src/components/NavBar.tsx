@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Link from 'next/link';
 import React, { useState } from 'react'
 import NavItem from './NavItem';
@@ -40,3 +40,4 @@ const NavBar = ({currentUser} : NavBarProps) => {
   )
 }
 
+export default NavBar;

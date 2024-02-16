@@ -4,7 +4,7 @@ import { TbBeach, TbMountain, TbPool } from 'react-icons/tb'
 import { FaSkiing} from 'react-icons/fa'
 import { GiBoatFishing, GiIsland, GiWindmill} from 'react-icons/gi'
 import { MdOutlineVilla } from 'react-icons/md'
-import { useParams, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import CategoryBox from './CategoryBox'
 export const categories = [
     {
